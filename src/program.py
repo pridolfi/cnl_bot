@@ -45,7 +45,7 @@ def atras():
     wiringpi.digitalWrite(16, 0)
     wiringpi.digitalWrite(12, 1)
 
-def parar();
+def parar():
     wiringpi.digitalWrite(21, 0)
     wiringpi.digitalWrite(20, 0)
     wiringpi.digitalWrite(16, 0)
