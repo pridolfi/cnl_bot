@@ -28,7 +28,7 @@ def parar():
     wiringpi.digitalWrite(12, 0)
 
 ok= False
-while ok = False:
+while ok == False:
     ok= os.access(RUTA, os.F_OK)
     time.sleep(1)
 
