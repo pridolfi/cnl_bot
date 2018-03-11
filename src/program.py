@@ -27,6 +27,18 @@ def parar():
     wiringpi.digitalWrite(16, 0)
     wiringpi.digitalWrite(12, 0)
 
+def izquierda():
+    wiringpi.digitalWrite(21, 0)
+    wiringpi.digitalWrite(20, 1)
+    wiringpi.digitalWrite(16, 1)
+    wiringpi.digitalWrite(12, 0)
+
+def derecha():
+    wiringpi.digitalWrite(21, 1)
+    wiringpi.digitalWrite(20, 0)
+    wiringpi.digitalWrite(16, 0)
+    wiringpi.digitalWrite(12, 1)
+
 ok= False
 while ok == False:
     ok= os.access(RUTA, os.F_OK)
@@ -57,4 +69,12 @@ while True:
                     atras()
                 else:
                     parar()
+            if event.code == ecodes.REL_X:
+                if event.value <= -2:
+                    izquierda()
+                elif event.value >= 2:
+                    derecha()
+                else:
+                    parar()
+
     n.notify("WATCHDOG=1")
