@@ -3,8 +3,11 @@
 import wiringpi
 import time
 import sdnotify
+import os, sys
 from evdev import InputDevice, categorize, ecodes
 from select import select
+
+RUTA='/dev/input/event0'
 
 def adelante():
     wiringpi.digitalWrite(21, 1)
@@ -24,7 +27,12 @@ def parar():
     wiringpi.digitalWrite(16, 0)
     wiringpi.digitalWrite(12, 0)
 
-dev = InputDevice('/dev/input/event0')
+ok= False
+while ok = False:
+    ok= os.access(RUTA, os.F_OK)
+    time.sleep(1)
+
+dev = InputDevice(RUTA)
 
 print(dev)
 
