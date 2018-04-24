@@ -47,6 +47,7 @@ while ok == False:
 dev = InputDevice(RUTA)
 
 print(dev)
+print("programa comenzado")
 
 n = sdnotify.SystemdNotifier()
 n.notify("READY=1")
