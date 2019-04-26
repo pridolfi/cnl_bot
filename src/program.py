@@ -7,8 +7,6 @@ import os, sys
 from evdev import InputDevice, categorize, ecodes
 from select import select
 
-RUTA='/dev/input/event0'
-
 def adelante():
     wiringpi.digitalWrite(21, 1)
     wiringpi.digitalWrite(20, 0)
@@ -39,14 +37,6 @@ def derecha():
     wiringpi.digitalWrite(16, 0)
     wiringpi.digitalWrite(12, 1)
 
-ok= False
-while ok == False:
-    ok= os.access(RUTA, os.F_OK)
-    time.sleep(1)
-
-dev = InputDevice(RUTA)
-
-print(dev)
 print("programa comenzado")
 
 n = sdnotify.SystemdNotifier()
@@ -59,23 +49,14 @@ wiringpi.pinMode(16, 1)
 wiringpi.pinMode(12, 1)
 
 while True:
-    r,w,x = select([dev], [], [])
-    for event in dev.read():
-        if event.type == ecodes.EV_REL:
-            print("rel: " + str(event.value))
-            if event.code == ecodes.REL_Y:
-                if event.value <= -2:
-                    adelante()
-                elif event.value >= 2:
-                    atras()
-                else:
-                    parar()
-            if event.code == ecodes.REL_X:
-                if event.value <= -2:
-                    izquierda()
-                elif event.value >= 2:
-                    derecha()
-                else:
-                    parar()
-
+    adelante()
+    time.sleep(5)
+    atras()
+    time.sleep(5)
+    izquierda()
+    time.sleep(5)
+    derecha()
+    time.sleep(5)
+    parar()
+    time.sleep(5)
     n.notify("WATCHDOG=1")
