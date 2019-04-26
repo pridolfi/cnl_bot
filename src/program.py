@@ -4,8 +4,6 @@ import wiringpi
 import time
 import sdnotify
 import os, sys
-from evdev import InputDevice, categorize, ecodes
-from select import select
 
 def adelante():
     wiringpi.digitalWrite(21, 1)
