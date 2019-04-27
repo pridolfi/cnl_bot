@@ -56,5 +56,5 @@ while True:
     derecha()
     time.sleep(2)
     #parar()
-    time.sleep(5)
+    #time.sleep(5)
     n.notify("WATCHDOG=1")
